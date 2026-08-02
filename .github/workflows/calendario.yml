@@ -1,0 +1,35 @@
+name: Aggiorna calendario
+
+on:
+  schedule:
+    - cron: "23 */6 * * *"   # ogni 6 ore
+  workflow_dispatch:          # e a mano dal tab Actions
+
+permissions:
+  contents: write
+
+jobs:
+  aggiorna:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Scarica il feed da Airbnb e tieni solo le date
+        env:
+          ICS: ${{ secrets.AIRBNB_ICS }}
+        run: |
+          curl -fsSL --retry 3 "$ICS" \
+            | tr -d '\r' \
+            | grep -E '^(BEGIN:VCALENDAR|END:VCALENDAR|BEGIN:VEVENT|END:VEVENT|VERSION:|DTSTART|DTEND)' \
+            > nuovo.ics
+          head -1 nuovo.ics | grep -q '^BEGIN:VCALENDAR'
+          mv nuovo.ics calendario.ics
+          echo "Eventi trovati: $(grep -c '^BEGIN:VEVENT' calendario.ics)"
+
+      - name: Committa solo se è cambiato qualcosa
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add calendario.ics
+          git diff --staged --quiet || git commit -m "Calendario aggiornato $(date -u +'%Y-%m-%d %H:%M UTC')"
+          git push
