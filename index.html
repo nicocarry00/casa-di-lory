@@ -27,14 +27,15 @@ html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
 body{margin:0;background:var(--sabbia);color:var(--testo);
   font-family:"Instrument Sans",system-ui,sans-serif;font-size:16px;line-height:1.55;overflow-x:hidden}
 .wrap{max-width:1000px;margin:0 auto;padding:0 var(--sp)}
-h1,h2,h3{margin:0;font-family:"Darker Grotesque",system-ui,sans-serif;line-height:.94;letter-spacing:-.01em}
+h1,h2,h3{margin:0;font-family:"Darker Grotesque",system-ui,sans-serif;line-height:1;
+  letter-spacing:-.01em;overflow-wrap:break-word;text-wrap:balance}
 .mono{font-family:"JetBrains Mono",ui-monospace,monospace}
 .eyebrow{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.2em;
   text-transform:uppercase;color:var(--acqua);margin:0 0 12px}
 
 /* ================= MARE ================= */
 .sea{position:relative;background:linear-gradient(178deg,#082E3C 0%,var(--abisso) 22%,var(--mare) 62%,#1E8496 100%);
-  color:var(--carta);padding-bottom:clamp(90px,14vw,190px);overflow:hidden}
+  color:var(--carta);padding-bottom:clamp(150px,19vw,240px);overflow:hidden}
 .sea::before{content:"";position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(120% 70% at 72% 8%,rgba(233,163,44,.22),transparent 60%)}
 .sea>*{position:relative;z-index:2}
@@ -51,24 +52,27 @@ h1,h2,h3{margin:0;font-family:"Darker Grotesque",system-ui,sans-serif;line-heigh
 #lang button[aria-current="true"]{background:var(--schiuma);color:var(--abisso);border-color:var(--schiuma)}
 
 .hero{padding:clamp(52px,9vw,110px) 0 0}
-.hero h1{font-size:clamp(56px,12.5vw,140px);font-weight:900;letter-spacing:-.025em}
+.hero h1{font-size:clamp(40px,7.6vw,96px);font-weight:900;letter-spacing:-.025em;
+  line-height:1.02;padding-bottom:.08em}
 .hero h1 span{display:block;opacity:0;transform:translateY(30px);
   animation:sale .95s cubic-bezier(.16,.8,.3,1) forwards}
 .hero h1 span:nth-child(1){animation-delay:.10s}
 .hero h1 span:nth-child(2){animation-delay:.22s;color:var(--schiuma)}
 .hero h1 span:nth-child(3){animation-delay:.34s}
 .hero .lede{max-width:52ch;font-size:clamp(17px,2.1vw,20px);color:rgba(251,247,239,.82);
-  margin:26px 0 0;opacity:0;animation:sale .95s cubic-bezier(.16,.8,.3,1) .48s forwards}
+  margin:clamp(26px,3.4vw,40px) 0 0;opacity:0;
+  animation:sale .95s cubic-bezier(.16,.8,.3,1) .48s forwards}
 @keyframes sale{to{opacity:1;transform:none}}
+@keyframes sfuma{to{opacity:1}}
 
 /* onde */
 .waves{position:absolute;left:0;right:0;bottom:-1px;z-index:1;line-height:0}
-.waves svg{display:block;width:200%;height:clamp(70px,11vw,150px)}
+.waves svg{display:block;width:200%;height:clamp(64px,9vw,120px)}
 .waves svg:nth-child(1){animation:scorri 21s linear infinite;opacity:.28}
 .waves svg:nth-child(2){animation:scorri 14s linear infinite reverse;opacity:.45;
-  margin-top:clamp(-58px,-8.4vw,-116px)}
+  margin-top:clamp(-46px,-6.5vw,-86px)}
 .waves svg:nth-child(3){animation:scorri 27s linear infinite;
-  margin-top:clamp(-40px,-6vw,-84px)}
+  margin-top:clamp(-40px,-5.6vw,-74px)}
 @keyframes scorri{to{transform:translateX(-50%)}}
 
 /* fatti — poggiano sulla sabbia, risalendo sull'onda */
@@ -86,34 +90,47 @@ h1,h2,h3{margin:0;font-family:"Darker Grotesque",system-ui,sans-serif;line-heigh
 /* ================= SEZIONI ================= */
 section{padding:clamp(56px,8vw,100px) 0}
 section+section{border-top:1px solid var(--sabbia-scura)}
-section h2{font-size:clamp(40px,6.6vw,72px);font-weight:900;letter-spacing:-.02em}
+section h2{font-size:clamp(38px,5.8vw,66px);font-weight:900;letter-spacing:-.02em;
+  line-height:1.02;padding-bottom:.05em}
 .sub{color:var(--testo-soft);max-width:58ch;margin:16px 0 0}
 
 .reveal{opacity:0;transform:translateY(26px);
   transition:opacity .8s ease,transform .8s cubic-bezier(.16,.8,.3,1)}
 .reveal.in{opacity:1;transform:none}
 
-/* giornata */
-.day{margin-top:clamp(30px,4vw,44px)}
-.lane{display:grid;grid-template-columns:118px 1fr;gap:14px;align-items:center;margin-bottom:10px}
-.lane-name{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--testo-soft);text-align:right}
-.track{position:relative;height:50px;background:var(--carta);
-  border:1px solid var(--sabbia-scura);overflow:hidden;
-  background-image:repeating-linear-gradient(to right,transparent 0,transparent calc(100%/24 - 1px),var(--sabbia-scura) calc(100%/24 - 1px),var(--sabbia-scura) calc(100%/24))}
-.seg{position:absolute;top:0;bottom:0;display:flex;align-items:center;padding:0 12px;
-  font-family:"JetBrains Mono",monospace;font-size:11.5px;white-space:nowrap;overflow:hidden;
-  transform:scaleX(0);transform-origin:left;animation:apri .85s cubic-bezier(.16,.8,.3,1) forwards}
-.seg>span{opacity:0;animation:sfuma .5s ease .45s forwards}
-@keyframes apri{to{transform:none}}
-@keyframes sfuma{to{opacity:1}}
-.in .seg{animation-play-state:running}
-.seg-quiet{background:var(--abisso);color:var(--schiuma)}
-.seg-in{background:var(--sole);color:#3B2600}
-.seg-out{background:var(--acqua);color:#04333A}
-.hours{display:grid;grid-template-columns:118px 1fr;gap:14px;margin-top:6px}
-.hours div:last-child{display:flex;justify-content:space-between;
-  font-family:"JetBrains Mono",monospace;font-size:10.5px;color:var(--testo-soft)}
+/* giornata: quadrante 24 ore */
+.day{margin-top:clamp(30px,4vw,44px);display:grid;
+  grid-template-columns:minmax(260px,370px) 1fr;gap:clamp(30px,5vw,64px);align-items:center}
+.quadrante{width:100%;max-width:370px;margin:0 auto;display:block}
+.quadrante .traccia{fill:none;stroke:var(--sabbia-scura);stroke-width:17}
+.quadrante .arco{fill:none;stroke-width:17;
+  stroke-dasharray:var(--len);stroke-dashoffset:var(--len);
+  transition:stroke-dashoffset 1.2s cubic-bezier(.16,.8,.3,1)}
+.in .quadrante .arco{stroke-dashoffset:0}
+.quadrante .tacca{stroke:var(--sabbia-scura);stroke-width:1.5}
+.quadrante .tacca.grande{stroke:var(--testo-soft);stroke-width:2}
+.quadrante .numero{fill:var(--testo-soft);font-family:"JetBrains Mono",monospace;
+  font-size:12px;text-anchor:middle;dominant-baseline:middle}
+.quadrante .lancetta{stroke:var(--testo);stroke-width:2;stroke-linecap:round;
+  transition:transform 1s cubic-bezier(.16,.8,.3,1);transform-origin:200px 200px}
+.quadrante .perno{fill:var(--testo)}
+.quadrante .adesso{fill:var(--testo-soft);font-family:"JetBrains Mono",monospace;
+  font-size:11px;letter-spacing:.14em;text-anchor:middle}
+
+.fasce{display:flex;flex-direction:column;gap:clamp(20px,2.6vw,28px)}
+.fascia{display:grid;grid-template-columns:13px 1fr;gap:15px;align-items:start;
+  padding-bottom:clamp(18px,2.2vw,24px);border-bottom:1px solid var(--sabbia-scura)}
+.fascia:last-child{border-bottom:none;padding-bottom:0}
+.fascia i{width:13px;height:13px;border-radius:50%;margin-top:9px}
+.fascia .titolo{font-family:"JetBrains Mono",monospace;font-size:10.5px;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--testo-soft)}
+.fascia .ore{display:block;font-family:"Darker Grotesque",sans-serif;font-weight:900;
+  font-size:clamp(30px,3.6vw,40px);line-height:1.05;margin-top:2px;letter-spacing:-.01em}
+.fascia .nota{font-size:14.5px;color:var(--testo-soft);margin-top:4px}
+
+@media (max-width:780px){
+  .day{grid-template-columns:1fr;gap:36px}
+}
 
 /* regole */
 .rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(252px,1fr));
@@ -121,7 +138,7 @@ section h2{font-size:clamp(40px,6.6vw,72px);font-weight:900;letter-spacing:-.02e
 .rule{background:var(--carta);padding:26px 24px;border:1px solid var(--sabbia-scura);
   border-top:3px solid var(--acqua);transition:transform .35s cubic-bezier(.16,.8,.3,1),box-shadow .35s ease}
 .rule:hover{transform:translateY(-5px);box-shadow:0 18px 34px -22px rgba(11,61,78,.5)}
-.rule h3{font-size:30px;font-weight:700;margin-bottom:9px}
+.rule h3{font-size:clamp(26px,2.6vw,30px);font-weight:700;margin-bottom:9px;line-height:1.04}
 .rule p{margin:0;color:var(--testo-soft);font-size:15px}
 .in .rule{animation:sale .7s cubic-bezier(.16,.8,.3,1) both;animation-delay:calc(var(--i,0)*70ms)}
 
@@ -181,9 +198,6 @@ button.nav:disabled{opacity:.35;cursor:default}
 a:focus-visible,button:focus-visible{outline:3px solid var(--sole);outline-offset:3px}
 
 @media (max-width:560px){
-  .lane,.hours{grid-template-columns:1fr;gap:6px}
-  .lane-name{text-align:left}
-  .hours div:first-child{display:none}
   .fact dd{font-size:34px}
 }
 @media (prefers-reduced-motion:reduce){
@@ -191,8 +205,7 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--sole);outline-offse
   *,*::before,*::after{animation:none!important;transition:none!important}
   .reveal{opacity:1;transform:none}
   .hero h1 span,.hero .lede,.day-cell{opacity:1}
-  .seg{transform:none}
-  .seg>span{opacity:1}
+  .quadrante .arco{stroke-dashoffset:0}
   .day-cell.past{opacity:.28}
 }
 </style>
@@ -226,10 +239,8 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--sole);outline-offse
     <h2 id="h-day"></h2>
     <p class="sub" id="sub-day"></p>
     <div class="day">
-      <div class="lane"><div class="lane-name" id="ln-quiet"></div><div class="track" id="lane-quiet"></div></div>
-      <div class="lane"><div class="lane-name" id="ln-in"></div><div class="track" id="lane-in"></div></div>
-      <div class="lane"><div class="lane-name" id="ln-out"></div><div class="track" id="lane-out"></div></div>
-      <div class="hours"><div></div><div><span>00</span><span>06</span><span>12</span><span>18</span><span>24</span></div></div>
+      <svg class="quadrante" id="quadrante" viewBox="0 0 400 400" role="img" aria-hidden="true"></svg>
+      <div class="fasce" id="fasce"></div>
     </div>
   </section>
 
@@ -279,11 +290,10 @@ a:focus-visible,button:focus-visible{outline:3px solid var(--sole);outline-offse
 /* ==================== CONFIGURAZIONE ==================== */
 const CONFIG = {
   nome:  "La casa di Lory",
-  checkinDa:  "17:00",
-  checkinA:   "20:00",
-  checkout:   "10:00",
-  silenzioDa: "22:00",
-  silenzioA:  "08:00",
+  checkin:       ["17:00","20:00"],
+  checkout:      "10:00",
+  silenzioNotte: ["22:00","08:00"],
+  silenzioPom:   ["14:00","16:00"],   // metti null per toglierlo
   annuncio: "https://www.airbnb.it/rooms/1215318298413003690",
   icsUrl: "calendario.ics",            // "" per nascondere il calendario
   mesiVisibili: 2,
@@ -299,9 +309,10 @@ it:{
   facts:[["Check-in","17:00","fino alle 20:00"],["Check-out","10:00","entro quest'ora"],
          ["Ospiti","6","3 camere matrimoniali"],["Spiaggia","300 m","Porto Paglietto, a piedi"]],
   ebDay:"Il ritmo della casa", hDay:"Una giornata, ora per ora",
-  subDay:"Gli orari sono l'unica cosa davvero rigida: il palazzo è abitato tutto l'anno e i vicini ci vivono.",
+  subDay:"Gli orari sono l'unica cosa davvero rigida: il palazzo è abitato tutto l'anno e nel primo pomeriggio si riposa.",
   lanes:["Silenzio","Arrivo","Partenza"],
-  fino:"fino alle", dalle:"dalle", entro:"entro le",
+  note:["Notte e primo pomeriggio","Fascia per il check-in","Ora limite per il check-out"],
+  entro:"entro le", adesso:"Adesso",
   ebRules:"Regole della casa", hRules:"Poche cose, chiare.",
   subRules:"Soggiornerai nell'alloggio di un'altra persona: trattalo con cura e rispetto.",
   rules:[
@@ -336,9 +347,10 @@ en:{
   facts:[["Check-in","17:00","until 20:00"],["Check-out","10:00","at the latest"],
          ["Guests","6","3 double bedrooms"],["Beach","300 m","Porto Paglietto, on foot"]],
   ebDay:"The rhythm of the house", hDay:"A day, hour by hour",
-  subDay:"The times are the one strict thing: the building is lived in all year round and the neighbours are at home.",
+  subDay:"The times are the one strict thing: the building is lived in all year round, and the early afternoon is for resting.",
   lanes:["Quiet hours","Arrival","Departure"],
-  fino:"until", dalle:"from", entro:"by",
+  note:["Night and early afternoon","Check-in window","Latest check-out time"],
+  entro:"by", adesso:"Now",
   ebRules:"House rules", hRules:"A few things, clearly.",
   subRules:"You'll be staying in someone else's home, so please treat it with care and respect.",
   rules:[
@@ -373,9 +385,10 @@ es:{
   facts:[["Llegada","17:00","hasta las 20:00"],["Salida","10:00","como máximo"],
          ["Huéspedes","6","3 dormitorios dobles"],["Playa","300 m","Porto Paglietto, a pie"]],
   ebDay:"El ritmo de la casa", hDay:"Un día, hora a hora",
-  subDay:"Los horarios son lo único realmente estricto: el edificio está habitado todo el año y los vecinos viven aquí.",
+  subDay:"Los horarios son lo único realmente estricto: el edificio está habitado todo el año y a primera hora de la tarde se descansa.",
   lanes:["Silencio","Llegada","Salida"],
-  fino:"hasta las", dalle:"desde las", entro:"antes de las",
+  note:["Noche y primera hora de la tarde","Franja para la llegada","Hora límite de salida"],
+  entro:"antes de las", adesso:"Ahora",
   ebRules:"Normas de la casa", hRules:"Pocas cosas, claras.",
   subRules:"Te alojas en la casa de otra persona: trátala con cuidado y respeto.",
   rules:[
@@ -410,9 +423,10 @@ de:{
   facts:[["Check-in","17:00","bis 20:00 Uhr"],["Check-out","10:00","spätestens"],
          ["Gäste","6","3 Doppelzimmer"],["Strand","300 m","Porto Paglietto, zu Fuß"]],
   ebDay:"Der Rhythmus des Hauses", hDay:"Ein Tag, Stunde für Stunde",
-  subDay:"Die Zeiten sind das Einzige, was wirklich streng ist: Das Haus ist ganzjährig bewohnt.",
+  subDay:"Die Zeiten sind das Einzige, was wirklich streng ist: Das Haus ist ganzjährig bewohnt, und am frühen Nachmittag wird geruht.",
   lanes:["Ruhezeit","Ankunft","Abreise"],
-  fino:"bis", dalle:"ab", entro:"bis",
+  note:["Nachts und am frühen Nachmittag","Zeitfenster für den Check-in","Späteste Check-out-Zeit"],
+  entro:"bis", adesso:"Jetzt",
   ebRules:"Hausregeln", hRules:"Wenige Dinge, klar geregelt.",
   subRules:"Sie wohnen in der Unterkunft einer anderen Person — bitte behandeln Sie sie mit Sorgfalt und Respekt.",
   rules:[
@@ -447,9 +461,10 @@ fr:{
   facts:[["Arrivée","17:00","jusqu'à 20h00"],["Départ","10:00","au plus tard"],
          ["Voyageurs","6","3 chambres doubles"],["Plage","300 m","Porto Paglietto, à pied"]],
   ebDay:"Le rythme de la maison", hDay:"Une journée, heure par heure",
-  subDay:"Les horaires sont la seule chose vraiment stricte : l'immeuble est habité toute l'année.",
+  subDay:"Les horaires sont la seule chose vraiment stricte : l'immeuble est habité toute l'année et l'on se repose en début d'après-midi.",
   lanes:["Silence","Arrivée","Départ"],
-  fino:"jusqu'à", dalle:"à partir de", entro:"avant",
+  note:["La nuit et en début d'après-midi","Créneau pour l'arrivée","Heure limite de départ"],
+  entro:"avant", adesso:"Maintenant",
   ebRules:"Règlement intérieur", hRules:"Peu de choses, mais claires.",
   subRules:"Vous séjournez dans le logement de quelqu'un d'autre : merci d'en prendre soin.",
   rules:[
@@ -516,21 +531,111 @@ function cambia(l){
   render(); selettore();
 }
 
-/* ---------- rendering ---------- */
+/* ---------- quadrante 24 ore ---------- */
 const h2n = s => { const [h,m] = s.split(":").map(Number); return h + m/60; };
-const pct = n => (n/24*100) + "%";
-function seg(lane, from, to, cls, label, ritardo){
-  const el = document.createElement("span");
-  el.className = "seg " + cls;
-  el.style.left = pct(from);
-  el.style.width = pct(to - from);
-  el.style.animationDelay = ritardo + "ms";
-  const s = document.createElement("span");
-  s.textContent = label;
-  s.style.animationDelay = (ritardo + 450) + "ms";
-  el.appendChild(s);
-  $(lane).appendChild(el);
+const CX = 200, CY = 200;
+const punto = (r, h) => {
+  const a = (h/24) * Math.PI * 2;
+  return [CX + r*Math.sin(a), CY - r*Math.cos(a)];
+};
+function arco(r, da, a){
+  const span = (((a - da) % 24) + 24) % 24 || 24;
+  const [x1,y1] = punto(r, da), [x2,y2] = punto(r, a);
+  return { d:`M${x1.toFixed(2)},${y1.toFixed(2)} A${r},${r} 0 ${span>12?1:0} 1 ${x2.toFixed(2)},${y2.toFixed(2)}`,
+           len: 2*Math.PI*r*span/24 };
 }
+const NS = "http://www.w3.org/2000/svg";
+const el = (tag, attr) => {
+  const n = document.createElementNS(NS, tag);
+  for (const k in attr) n.setAttribute(k, attr[k]);
+  return n;
+};
+
+const RAGGI = { silenzio:150, arrivo:124, partenza:98 };
+
+function costruisciQuadrante(){
+  const q = $("quadrante");
+  q.innerHTML = "";
+
+  // tacche e numeri
+  for (let h = 0; h < 24; h++){
+    const grande = h % 3 === 0;
+    const [x1,y1] = punto(grande ? 160 : 165, h);
+    const [x2,y2] = punto(173, h);
+    q.appendChild(el("line", { x1,y1,x2,y2, class:"tacca" + (grande ? " grande" : "") }));
+    if (grande){
+      const [tx,ty] = punto(187, h);
+      const n = el("text", { x:tx, y:ty, class:"numero" });
+      n.textContent = String(h).padStart(2,"0");
+      q.appendChild(n);
+    }
+  }
+
+  // anelli di fondo
+  Object.values(RAGGI).forEach(r => q.appendChild(el("circle", { cx:CX, cy:CY, r, class:"traccia" })));
+
+  // archi colorati
+  const fasce = [
+    [RAGGI.silenzio,  h2n(CONFIG.silenzioNotte[0]), h2n(CONFIG.silenzioNotte[1]), "var(--abisso)", 0],
+    CONFIG.silenzioPom &&
+    [RAGGI.silenzio,  h2n(CONFIG.silenzioPom[0]),   h2n(CONFIG.silenzioPom[1]),   "var(--abisso)", 120],
+    [RAGGI.arrivo,    h2n(CONFIG.checkin[0]),       h2n(CONFIG.checkin[1]),       "var(--sole)",   240],
+    [RAGGI.partenza,  0,                            h2n(CONFIG.checkout),         "var(--acqua)",  360]
+  ].filter(Boolean);
+
+  fasce.forEach(([r, da, a, colore, ritardo]) => {
+    const { d, len } = arco(r, da, a);
+    const p = el("path", { d, class:"arco", stroke:colore });
+    p.style.setProperty("--len", len.toFixed(1));
+    p.style.transitionDelay = ritardo + "ms";
+    q.appendChild(p);
+  });
+
+  // lancetta dell'ora corrente
+  const lancetta = el("line", { x1:CX, y1:CY, x2:CX, y2:CY-86, class:"lancetta", id:"lancetta" });
+  q.appendChild(lancetta);
+  q.appendChild(el("circle", { cx:CX, cy:CY, r:4, class:"perno" }));
+  const ora = el("text", { x:CX, y:CY+34, class:"adesso", id:"ora-adesso" });
+  q.appendChild(ora);
+  muoviLancetta();
+}
+
+function muoviLancetta(){
+  const d = new Date();
+  const h = d.getHours() + d.getMinutes()/60;
+  const l = $("lancetta");
+  if (l) l.setAttribute("transform", `rotate(${(h/24*360).toFixed(2)} ${CX} ${CY})`);
+  const o = $("ora-adesso");
+  if (o) o.textContent = (t.adesso + " " + String(d.getHours()).padStart(2,"0") + ":" +
+                          String(d.getMinutes()).padStart(2,"0")).toUpperCase();
+}
+setInterval(muoviLancetta, 30000);
+
+function legendaOrari(){
+  const c = $("fasce");
+  c.innerHTML = "";
+  const trattino = " – ";
+  const silenzio = CONFIG.silenzioNotte.join(trattino) +
+    (CONFIG.silenzioPom ? "  ·  " + CONFIG.silenzioPom.join(trattino) : "");
+  const righe = [
+    ["var(--abisso)", t.lanes[0], silenzio,                        t.note[0]],
+    ["var(--sole)",   t.lanes[1], CONFIG.checkin.join(trattino),   t.note[1]],
+    ["var(--acqua)",  t.lanes[2], t.entro + " " + CONFIG.checkout, t.note[2]]
+  ];
+  righe.forEach(([colore, titolo, ore, nota]) => {
+    const riga = document.createElement("div"); riga.className = "fascia";
+    const pallino = document.createElement("i"); pallino.style.background = colore;
+    const testo = document.createElement("div");
+    const tt = document.createElement("span"); tt.className = "titolo"; tt.textContent = titolo;
+    const oo = document.createElement("span"); oo.className = "ore"; oo.textContent = ore;
+    const nn = document.createElement("p"); nn.className = "nota"; nn.textContent = nota;
+    testo.append(tt, oo, nn);
+    riga.append(pallino, testo);
+    c.appendChild(riga);
+  });
+}
+
+/* ---------- rendering ---------- */
 
 function render(){
   document.title = CONFIG.nome + " — Portoscuso";
@@ -554,12 +659,8 @@ function render(){
   });
 
   $("eb-day").textContent = t.ebDay; $("h-day").textContent = t.hDay; $("sub-day").textContent = t.subDay;
-  [$("ln-quiet"), $("ln-in"), $("ln-out")].forEach((el,i) => el.textContent = t.lanes[i]);
-  ["lane-quiet","lane-in","lane-out"].forEach(id => $(id).innerHTML = "");
-  seg("lane-quiet", 0, h2n(CONFIG.silenzioA), "seg-quiet", t.fino + " " + CONFIG.silenzioA, 0);
-  seg("lane-quiet", h2n(CONFIG.silenzioDa), 24, "seg-quiet", t.dalle + " " + CONFIG.silenzioDa, 90);
-  seg("lane-in", h2n(CONFIG.checkinDa), h2n(CONFIG.checkinA), "seg-in", CONFIG.checkinDa + " – " + CONFIG.checkinA, 180);
-  seg("lane-out", 0, h2n(CONFIG.checkout), "seg-out", t.entro + " " + CONFIG.checkout, 270);
+  legendaOrari();
+  muoviLancetta();
 
   $("eb-rules").textContent = t.ebRules; $("h-rules").textContent = t.hRules; $("sub-rules").textContent = t.subRules;
   $("rules").innerHTML = "";
@@ -664,6 +765,7 @@ document.querySelectorAll(".reveal").forEach(el => osservatore.observe(el));
 /* ---------- avvio ---------- */
 lang = scegliLingua(); t = T[lang];
 document.documentElement.lang = lang;
+costruisciQuadrante();
 selettore();
 render();
 
